@@ -1,19 +1,30 @@
 version: '3.9'
 services:
-  web:
-    build:
-      context: .
-      target: web
-    volumes:
-      - ./:/app
-    ports:
-      - '5001:5001'
+#  web:
+#    build:
+#      context: .
+#      target: web
+#    volumes:
+#      - ./:/app
+#    ports:
+#      - '5001:5001'
+#
+#  server:
+#    build:
+#      context: .
+#      target: server
+#    volumes:
+#      - ./:/app
+#    ports:
+#      - '5002:5002'
 
-  server:
-    build:
-      context: .
-      target: server
-    volumes:
-      - ./:/app
+  db:
+    image: 'postgres:13.2-alpine'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - TZ=UTC
     ports:
-      - '5002:5002'
+      - '5003:5432'

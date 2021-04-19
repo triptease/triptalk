@@ -8,12 +8,13 @@ describe('Message', () => {
     await app.start();
     const message = 'Hello World!';
 
-    await fetch(`http://localhost:${port}/messages`, { method: 'POST', body: message });
-    const response = await fetch(`http://localhost:${port}/message`, { method: 'GET' });
+    const postResult = await fetch(`http://localhost:${port}/messages`, { method: 'POST', body: message });
+    expect(postResult.status).toBe(201);
+
+    const getResult = await fetch(`http://localhost:${port}/message`, { method: 'GET' });
+    expect(getResult.status).toBe(200);
+    expect(await getResult.text()).toBe(message);
 
     await app.stop();
-
-    expect(response.status).toBe(200);
-    expect(await response.text()).toBe(message);
   });
 });
