@@ -1,4 +1,5 @@
 import fastify, { FastifyInstance } from 'fastify';
+import fastifyCors from 'fastify-cors';
 import { Server } from 'https';
 
 export class App {
@@ -10,6 +11,10 @@ export class App {
     this.server = fastify({
       logger: true,
     });
+
+    this.server.register(fastifyCors);
+
+    this.server.get('/message', async () => 'Hello World!');
   }
 
   async start() {
