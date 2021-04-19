@@ -1,11 +1,17 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 
-export const App: FunctionComponent = () => {
+export type MessageClient = { get: () => Promise<string> };
+
+type Props = {
+  messageClient: MessageClient
+}
+
+export const App: FunctionComponent<Props> = ({ messageClient }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5002/message', { method: 'GET' }).then((response) => response.text().then(setMessage));
+    messageClient.get().then(setMessage);
   });
 
-  return <div>{message}</div>;
+  return <div className='message'>{message}</div>;
 };
