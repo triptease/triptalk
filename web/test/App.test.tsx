@@ -6,7 +6,7 @@ import { MessageClient } from '../src/MessageClient';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Message', () => {
+describe('App', () => {
   it(`Creates and retrieves messages`, async () => {
     const messages: Array<string> = [];
 
