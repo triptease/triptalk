@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { PureComponent } from 'react';
 
 export type MessageClient = { get: () => Promise<string> };
 
@@ -6,12 +6,22 @@ type Props = {
   messageClient: MessageClient
 }
 
-export const App: FunctionComponent<Props> = ({ messageClient }) => {
-  const [message, setMessage] = useState('');
+type State = {
+  message: string
+}
 
-  useEffect(() => {
-    messageClient.get().then(setMessage);
-  });
+export class App extends PureComponent<Props, State> {
+  state = {
+    message: ''
+  }
 
-  return <div className='message'>{message}</div>;
-};
+  async componentDidMount() {
+    const message = await this.props.messageClient.get();
+
+    this.setState({ message });
+  }
+
+  render() {
+    return <div className='message'>{this.state.message}</div>;
+  }
+}
