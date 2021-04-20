@@ -14,7 +14,12 @@ describe('Message', () => {
       create: async (newMessage: string) => {
         message = newMessage;
       },
-      get: async () => message,
+      get: async () => {
+        return [{
+          id: 'someId',
+          message,
+        }];
+      },
     };
 
     const app = await shallow(<App messageClient={messageClient} />);
@@ -23,7 +28,7 @@ describe('Message', () => {
     app.find('.create-new-message').simulate('click');
 
     await runAllPromises();
-    expect(app.find('.message').text()).toEqual('Hello Mars!');
+    expect(app.find('.message').at(0).text()).toEqual('Hello Mars!');
   });
 });
 

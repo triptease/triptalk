@@ -1,5 +1,5 @@
 import React, { ChangeEvent, PureComponent } from 'react';
-import { MessageClient } from './MessageClient';
+import { Message, MessageClient } from './MessageClient';
 
 type Props = {
   messageClient: MessageClient;
@@ -7,13 +7,13 @@ type Props = {
 
 type State = {
   newMessage: string;
-  message: string;
+  messages: Array<Message>;
 };
 
 export class App extends PureComponent<Props, State> {
-  state = {
+  readonly state: State = {
     newMessage: '',
-    message: '',
+    messages: [],
   };
 
   async componentDidMount() {
@@ -32,9 +32,9 @@ export class App extends PureComponent<Props, State> {
   };
 
   private async getMessage() {
-    const message = await this.props.messageClient.get();
+    const messages = await this.props.messageClient.get();
 
-    this.setState({ message });
+    this.setState({ messages });
   }
 
   render() {
@@ -44,7 +44,13 @@ export class App extends PureComponent<Props, State> {
         <button className="create-new-message" onClick={this.onCreateNewMessageClick}>
           Create new message
         </button>
-        <div className="message">{this.state.message}</div>
+        <ol>
+          {this.state.messages.map((message) => (
+            <li key={message.id} className="message">
+              {message.message}
+            </li>
+          ))}
+        </ol>
       </>
     );
   }

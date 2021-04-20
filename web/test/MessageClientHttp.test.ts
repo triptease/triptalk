@@ -25,11 +25,14 @@ describe(`Use a remote message server`, () => {
   });
 
   it(`Get a message`, async () => {
-    const storedMessage: string = 'a new message';
+    const storedMessage = {
+      id: '195f4430-fe86-4628-afea-f7e870f0b2a1',
+      message: 'a new message',
+    };
 
     const server = await fastify({
       logger: true,
-    }).get('/message', async (_, reply) => {
+    }).get('/messages', async (_, reply) => {
       return reply.send(storedMessage);
     });
     const baseUrl = await server.listen(0);

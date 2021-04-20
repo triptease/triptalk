@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { MessageClient } from './MessageClient';
+import { Message, MessageClient } from './MessageClient';
 
 export class MessageClientHttp implements MessageClient {
   constructor(private readonly baseUrl: string) {}
@@ -8,8 +8,9 @@ export class MessageClientHttp implements MessageClient {
     await fetch(`${this.baseUrl}/messages`, { method: 'POST', body: newMessage });
   }
 
-  get(): Promise<string> {
-    const message = fetch(`${this.baseUrl}/message`, { method: 'GET' }).then((response) => response.text());
-    return Promise.resolve(message);
+  async get(): Promise<Array<Message>> {
+    const messages = await fetch(`${this.baseUrl}/messages`, { method: 'GET' }).then((response) => response.json());
+
+    return Promise.resolve(messages);
   }
 }
