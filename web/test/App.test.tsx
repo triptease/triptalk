@@ -7,7 +7,7 @@ import { MessageClient } from '../src/MessageClient';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('App', () => {
-  it(`Creates and retrieves messages`, async () => {
+  test(`Creates and retrieves messages`, async () => {
     const messages: Array<string> = [];
 
     const messageClient: MessageClient = {
@@ -38,7 +38,7 @@ describe('App', () => {
     expect(app.find('.message').at(1).text()).toEqual('Hello Jupiter!');
   });
 
-  it(`Like a message`, async () => {
+  test(`Like a message`, async () => {
     let message = {
       id: 'someId',
       message: 'someMessage',

@@ -3,7 +3,7 @@ import fastify from 'fastify';
 import { UUID } from '../src/MessageClient';
 
 describe(`Use a remote message server`, () => {
-  it(`Create a message`, async () => {
+  test(`Create a message`, async () => {
     let messageStore: string = 'no message';
 
     const server = await fastify({
@@ -25,7 +25,7 @@ describe(`Use a remote message server`, () => {
     }
   });
 
-  it(`Get a message`, async () => {
+  test(`Get a message`, async () => {
     const storedMessage = {
       id: '195f4430-fe86-4628-afea-f7e870f0b2a1',
       message: 'a new message',
@@ -49,7 +49,7 @@ describe(`Use a remote message server`, () => {
     }
   });
 
-  it(`Like a message`, async () => {
+  test(`Like a message`, async () => {
     const messageId = '195f4430-fe86-4628-afea-f7e870f0b2a1';
     const calls: { messageId: UUID; body: object }[] = [];
 

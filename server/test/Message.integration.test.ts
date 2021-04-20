@@ -2,7 +2,7 @@ import { App } from '../src/App';
 import fetch from 'node-fetch';
 
 describe('Message', () => {
-  it('Creates and retrieves all messages', async () => {
+  test('Creates and retrieves all messages', async () => {
     const port = 6000;
     const app = new App(port);
     await app.start();
