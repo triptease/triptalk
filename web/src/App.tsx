@@ -49,15 +49,17 @@ export class App extends PureComponent<Props, State> {
           Create new message
         </button>
         <ol>
-          {this.state.messages.map((message) => (
-            <li key={message.id}>
-              <span className="message">{message.message}</span>
-              <button className="like-message" onClick={this.onLikeMessageClick(message.id)}>
-                Like
-              </button>
-              <span className="liked">{message.liked && '👍'}</span>
-            </li>
-          ))}
+          {this.state.messages
+            .sort((left, right) => (left.message > right.message ? 1 : -1))
+            .map((message) => (
+              <li key={message.id}>
+                <span className="message">{message.message}</span>
+                <button className="like-message" onClick={this.onLikeMessageClick(message.id)}>
+                  Like
+                </button>
+                <span className="liked">{message.liked && '👍'}</span>
+              </li>
+            ))}
         </ol>
       </>
     );
