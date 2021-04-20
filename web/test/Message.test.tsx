@@ -6,11 +6,31 @@ import { App, MessageClient } from '../src/App';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Message', () => {
-  it('Creates and retrieves a message', async () => {
-    const messageClient: MessageClient = { get: async () => 'Hello World!' };
+  it(`Creates and retrieves a message`, async () => {
+    let message: string = 'no message';
+
+    const messageClient: MessageClient = {
+      create: async (newMessage: string) => {
+        message = newMessage;
+      },
+      get: async () => message,
+    };
 
     const app = await shallow(<App messageClient={messageClient} />);
 
-    expect(app.find('.message').text()).toEqual('Hello World!');
+    app.find('.new-message').simulate('change', { target: { value: 'Hello Mars!' } });
+    app.find('.create-new-message').simulate('click');
+
+    await runAllPromises();
+
+    expect(app.find('.message').text()).toEqual('Hello Mars!');
   });
 });
+
+const runAllPromises = () => {
+  return new Promise((resolve) => {
+    setImmediate(() => {
+      resolve(undefined);
+    });
+  });
+};
