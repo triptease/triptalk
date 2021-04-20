@@ -1,5 +1,5 @@
 import React, { ChangeEvent, PureComponent } from 'react';
-import { Message, MessageClient } from './MessageClient';
+import { Message, MessageClient, UUID } from './MessageClient';
 
 type Props = {
   messageClient: MessageClient;
@@ -17,7 +17,7 @@ export class App extends PureComponent<Props, State> {
   };
 
   async componentDidMount() {
-    await this.getMessage();
+    await this.getMessages();
   }
 
   onNewMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,14 +28,18 @@ export class App extends PureComponent<Props, State> {
 
   onCreateNewMessageClick = async () => {
     await this.props.messageClient.create(this.state.newMessage);
-    await this.getMessage();
+    await this.getMessages();
   };
 
-  private async getMessage() {
+  private async getMessages() {
     const messages = await this.props.messageClient.get();
-
     this.setState({ messages });
   }
+
+  private onLikeMessageClick = (messageId: UUID) => async () => {
+    await this.props.messageClient.like(messageId);
+    await this.getMessages();
+  };
 
   render() {
     return (
@@ -46,8 +50,12 @@ export class App extends PureComponent<Props, State> {
         </button>
         <ol>
           {this.state.messages.map((message) => (
-            <li key={message.id} className="message">
-              {message.message}
+            <li key={message.id}>
+              <span className="message">{message.message}</span>
+              <button className="like-message" onClick={this.onLikeMessageClick(message.id)}>
+                Like
+              </button>
+              <span className="liked">{message.liked && '👍'}</span>
             </li>
           ))}
         </ol>

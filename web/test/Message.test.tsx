@@ -14,13 +14,14 @@ describe('Message', () => {
       create: async (newMessage: string) => {
         messages.push(newMessage);
       },
-      get: async () => {
-        return messages.map((message) => {
-          return {
-            id: 'someId',
-            message,
-          };
-        });
+      get: async () =>
+        messages.map((message) => ({
+          id: 'someId',
+          liked: false,
+          message,
+        })),
+      like() {
+        return Promise.resolve(undefined);
       },
     };
 
@@ -35,6 +36,34 @@ describe('Message', () => {
     await runAllPromises();
     expect(app.find('.message').at(0).text()).toEqual('Hello Saturn!');
     expect(app.find('.message').at(1).text()).toEqual('Hello Jupiter!');
+  });
+
+  it(`Like a message`, async () => {
+    let message = {
+      id: 'someId',
+      message: 'someMessage',
+      liked: false,
+    };
+    const messageClient: MessageClient = {
+      create: async () => {},
+      get: async () => [message],
+      like: async () => {
+        message = {
+          ...message,
+          liked: true,
+        };
+      },
+    };
+
+    const app = await shallow(<App messageClient={messageClient} />);
+
+    await runAllPromises();
+    expect(app.find('.liked').text()).toEqual('');
+
+    app.find('.like-message').simulate('click');
+
+    await runAllPromises();
+    expect(app.find('.liked').text()).toEqual('👍');
   });
 });
 
