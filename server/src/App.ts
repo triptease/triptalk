@@ -3,6 +3,7 @@ import fastifyCors from 'fastify-cors';
 import { Server } from 'https';
 import { Client } from 'pg';
 import Postgrator from 'postgrator';
+import { v4 as uuid } from 'uuid';
 
 export class App {
   private readonly fastify: FastifyInstance<Server>;
@@ -39,13 +40,19 @@ export class App {
 
     this.fastify.post('/messages', async (request, reply) => {
       message = request.body as string;
-      await this.client.query(`INSERT INTO messages (message) VALUES ('${message}');`);
+      await this.client.query(`INSERT INTO messages (id, message) VALUES ('${uuid()}', '${message}');`);
       return reply.code(201).send();
     });
 
-    this.fastify.get('/message', async (_, reply) => {
+    this.fastify.get('/messages', async (_, reply) => {
       const result = await this.client.query(`SELECT * FROM messages;`);
-      return reply.code(200).send(result.rows[0].message);
+
+      const messages = result.rows.map((row) => ({
+        id: row.id,
+        message: row.message,
+      }));
+
+      return reply.code(200).send(messages);
     });
   }
 

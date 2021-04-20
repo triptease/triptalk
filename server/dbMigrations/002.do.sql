@@ -1,0 +1,4 @@
+TRUNCATE TABLE messages;
+
+ALTER TABLE messages
+ADD COLUMN id UUID NOT NULL;
