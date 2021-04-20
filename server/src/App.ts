@@ -4,6 +4,7 @@ import { Server } from 'https';
 import { Client } from 'pg';
 import Postgrator from 'postgrator';
 import { v4 as uuid } from 'uuid';
+import { Message } from './Message';
 
 export class App {
   private readonly fastify: FastifyInstance<Server>;
@@ -40,19 +41,26 @@ export class App {
 
     this.fastify.post('/messages', async (request, reply) => {
       message = request.body as string;
-      await this.client.query(`INSERT INTO messages (id, message) VALUES ('${uuid()}', '${message}');`);
+      await this.client.query(`INSERT INTO messages (id, message, liked) VALUES ('${uuid()}', '${message}', FALSE);`);
       return reply.code(201).send();
     });
 
     this.fastify.get('/messages', async (_, reply) => {
       const result = await this.client.query(`SELECT * FROM messages;`);
 
-      const messages = result.rows.map((row) => ({
+      const messages: Message[] = result.rows.map((row) => ({
         id: row.id,
         message: row.message,
+        liked: row.liked,
       }));
 
       return reply.code(200).send(messages);
+    });
+
+    this.fastify.patch('/messages/:id', async (request, reply) => {
+      const id = (request.params as { id: string }).id;
+      await this.client.query(`UPDATE messages SET liked = TRUE WHERE id = '${id}'`);
+      return reply.code(204).send();
     });
   }
 
