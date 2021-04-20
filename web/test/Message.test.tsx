@@ -7,28 +7,34 @@ import { MessageClient } from '../src/MessageClient';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Message', () => {
-  it(`Creates and retrieves a message`, async () => {
-    let message: string = 'no message';
+  it(`Creates and retrieves messages`, async () => {
+    const messages: Array<string> = [];
 
     const messageClient: MessageClient = {
       create: async (newMessage: string) => {
-        message = newMessage;
+        messages.push(newMessage);
       },
       get: async () => {
-        return [{
-          id: 'someId',
-          message,
-        }];
+        return messages.map((message) => {
+          return {
+            id: 'someId',
+            message,
+          };
+        });
       },
     };
 
     const app = await shallow(<App messageClient={messageClient} />);
 
-    app.find('.new-message').simulate('change', { target: { value: 'Hello Mars!' } });
+    app.find('.new-message').simulate('change', { target: { value: 'Hello Saturn!' } });
+    app.find('.create-new-message').simulate('click');
+
+    app.find('.new-message').simulate('change', { target: { value: 'Hello Jupiter!' } });
     app.find('.create-new-message').simulate('click');
 
     await runAllPromises();
-    expect(app.find('.message').at(0).text()).toEqual('Hello Mars!');
+    expect(app.find('.message').at(0).text()).toEqual('Hello Saturn!');
+    expect(app.find('.message').at(1).text()).toEqual('Hello Jupiter!');
   });
 });
 
