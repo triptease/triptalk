@@ -14,7 +14,10 @@ export class MessageClientHttp implements MessageClient {
     return Promise.resolve(messages);
   }
 
-  like(_: UUID): Promise<void> {
-    return Promise.resolve(undefined);
+  async like(messageId: UUID): Promise<void> {
+    await fetch(`${this.baseUrl}/messages/${messageId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ liked: true }),
+    });
   }
 }
