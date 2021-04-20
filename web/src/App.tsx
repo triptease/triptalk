@@ -1,9 +1,5 @@
 import React, { ChangeEvent, PureComponent } from 'react';
-
-export type MessageClient = {
-  get: () => Promise<string>;
-  create: (newMessage: string) => Promise<void>;
-};
+import { MessageClient } from './MessageClient';
 
 type Props = {
   messageClient: MessageClient;
