@@ -26,8 +26,8 @@ export class App {
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      port: 5003,
-      host: 'localhost',
+      port: 5432,
+      host: 'db',
     });
 
     let message: string = '';
@@ -35,8 +35,8 @@ export class App {
       user: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      port: 5003,
-      host: 'localhost',
+      port: 5432,
+      host: 'db',
     });
 
     this.fastify.post('/messages', async (request, reply) => {
@@ -70,7 +70,7 @@ export class App {
 
     await this.client.connect();
 
-    const url = await this.fastify.listen(this.port);
+    const url = await this.fastify.listen(this.port, '0.0.0.0');
     console.log(`App listening on ${url}`);
   }
 
