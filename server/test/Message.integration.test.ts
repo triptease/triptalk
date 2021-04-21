@@ -34,10 +34,12 @@ describe('Message', () => {
           {
             id: expect.stringMatching(/^.+$/),
             message: message1,
+            liked: false,
           },
           {
             id: expect.stringMatching(/^.+$/),
             message: message2,
+            liked: false,
           },
         ]),
       );

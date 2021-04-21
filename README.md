@@ -17,6 +17,12 @@ This wil start the app locally with automatic refreshing of the web and server c
 
 Visit `http://localhost:5001` in your browser.
 
+## Running tests
+You need to have the database running in Docker when running the tests. It starts as part of `yarn start`, or you can start it manually by running `docker-compose up`
+
+```
+$ yarn test
+```
 
 ## Notes
 Each push will deploy the app to production.

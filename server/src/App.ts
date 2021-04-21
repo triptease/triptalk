@@ -66,7 +66,7 @@ export class App {
 
   async start() {
     const appliedMigrations = await this.postgrator.migrate();
-    console.log(appliedMigrations);
+    console.log('App applied migrations:', appliedMigrations);
 
     await this.client.connect();
 

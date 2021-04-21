@@ -34,8 +34,12 @@ describe('App', () => {
     app.find('.create-new-message').simulate('click');
 
     await runAllPromises();
-    expect(app.find('.message').at(0).text()).toEqual('Hello Saturn!');
-    expect(app.find('.message').at(1).text()).toEqual('Hello Jupiter!');
+    let allMessagesText = app.find('.message').map(node => node.text());
+    expect(allMessagesText).toHaveLength(2);
+    expect(allMessagesText).toEqual(expect.arrayContaining([
+      'Hello Saturn!',
+      'Hello Jupiter!'
+    ]));
   });
 
   test(`Like a message`, async () => {
