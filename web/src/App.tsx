@@ -50,7 +50,7 @@ export class App extends PureComponent<Props, State> {
         </button>
         <ol style={{ lineHeight: '3em' }}>
           {this.state.messages
-            .sort((left, right) => (left.message > right.message ? 1 : -1))
+            .sort((left, right) => (left.id > right.id ? 1 : -1))
             .map((message) => (
               <li key={message.id}>
                 <button
