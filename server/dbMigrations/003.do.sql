@@ -1,4 +1,0 @@
-TRUNCATE TABLE messages;
-
-ALTER TABLE messages
-ADD COLUMN liked BOOLEAN NOT NULL;

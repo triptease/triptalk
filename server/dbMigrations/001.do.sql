@@ -1,3 +1,5 @@
 CREATE TABLE messages (
-  message VARCHAR
-)
+  id UUID NOT NULL,
+  message VARCHAR,
+  liked BOOLEAN NOT NULL
+);
