@@ -68,8 +68,8 @@ describe('Message', () => {
 
       const messages: Message[] = await (await fetch(`http://localhost:${port}/messages`, { method: 'GET' })).json();
 
-      const likedMessage = messages[0];
-      const unlikedMessage = messages[1];
+      const likedMessage = messages.find((message) => message.message === message1)!;
+      const unlikedMessage = messages.find((message) => message.message === message2)!;
 
       const likeMessageResponse = await fetch(`http://localhost:${port}/messages/${likedMessage.id}`, {
         method: 'PATCH',
