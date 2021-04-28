@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "parcel src/index.html --port=5001"
+    "start": "parcel src/index.html --port=5001",
+    "compile": "tsc"
   },
   "dependencies": {
     "isomorphic-fetch": "^3.0.0",

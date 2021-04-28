@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "start": "docker-compose up -d && concurrently 'yarn workspace web start' 'yarn workspace server start'"
+    "start": "docker-compose up -d && concurrently 'yarn workspace web start' 'yarn workspace server start'",
+    "compile": "yarn workspace server compile && yarn workspace web compile"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
