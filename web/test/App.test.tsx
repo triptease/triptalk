@@ -73,8 +73,8 @@ describe('App', () => {
 
 const runAllPromises = () => {
   return new Promise((resolve) => {
-    setImmediate(() => {
+    setTimeout(() => {
       resolve(undefined);
-    });
+    }, 0);
   });
 };
