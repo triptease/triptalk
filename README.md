@@ -21,7 +21,7 @@ There will be 15 minutes at end for questions.
 ## Required dependencies
 - `docker`
 - `docker-compose`
-- `nvm`
+- `node` v16.15 (or you can use `nvm` if your platform support it)
 - `yarn`
 
 ## Starting the project
@@ -30,6 +30,8 @@ $ nvm install
 $ yarn
 $ yarn start
 ```
+
+`yarn start` is a convenience script that uses `concurrently` to run both `yarn start:web` and `yarn start:server`. Some platforms don't support `concurrently` so you will have to execute both the run scripts separately.
 
 This will start the app locally with automatic refreshing of the web and server components when you make a change.
 
