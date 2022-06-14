@@ -25,20 +25,29 @@ There will be 15 minutes at end for questions.
 - `yarn`
 
 ## Starting the project
+Download the project dependencies and start the database in docker.
 ```
 $ nvm install
 $ yarn
+$ docker-compose up -d
+```
+Then, in two separate terminals/tabs:
+
+```
+$ cd server
 $ yarn start
 ```
-
-`yarn start` is a convenience script that uses `concurrently` to run both `yarn start:web` and `yarn start:server`. Some platforms don't support `concurrently` so you will have to execute both the run scripts separately.
+```
+$ cd web
+$ yarn start
+```
 
 This will start the app locally with automatic refreshing of the web and server components when you make a change.
 
 Visit `http://localhost:5001` in your browser.
 
 ## Running tests
-You need to have the database running in Docker when running the tests. It starts as part of `yarn start`, or you can start it manually by running `docker-compose up`
+You need to have the database running in Docker when running the tests.
 
 ```
 $ yarn test
