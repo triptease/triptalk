@@ -1,6 +1,12 @@
 # Triptalk
 
-It's an app that allows you to submit messages and Like them. We'd like you to extend the functionality to show a count of the number of times a message has been Liked.
+It's an app that allows you to submit messages and Like them.
+
+## The Task
+
+We'd like you to extend this functionality to show a count of the number of times a message has been Liked.
+
+## How this session is structured
 
 This exercise isn't about fully implementing a feature and so there's no need to worry about finishing it in the time. We're interested in coming along a journey with you and seeing how you approach this sort of work. Imagine you're already part of our team and this is the next big feature we want to get in front of customers.
 
@@ -52,3 +58,8 @@ You need to have the database running in Docker when running the tests.
 ```
 $ yarn test
 ```
+
+
+Good luck!
+
+
