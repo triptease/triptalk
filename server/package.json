@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon",
-    "compile": "tsc"
+    "compile": "tsc",
+    "test": "jest"
   },
   "dependencies": {
     "@types/pg": "^7.14.11",

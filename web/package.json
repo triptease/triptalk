@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "parcel src/index.html --port=5001",
-    "compile": "tsc"
+    "compile": "tsc",
+    "test": "jest"
   },
   "dependencies": {
     "isomorphic-fetch": "^3.0.0",
