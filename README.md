@@ -30,14 +30,23 @@ There will be 15 minutes at end for questions.
 - `node` v16.15 (or you can use `nvm` if your platform supports it)
 - `yarn`
 
-## Starting the project
+## Setting up the project
 Download the project dependencies and start the database in docker.
 ```
 $ nvm install
 $ yarn
 $ docker-compose up -d
 ```
-Then, in two separate terminals/tabs:
+
+## Running tests
+You need to have the database running in Docker when running the tests.
+
+```
+$ yarn test
+```
+
+## Starting the project
+In two separate terminals/tabs:
 
 ```
 $ cd server
@@ -51,15 +60,3 @@ $ yarn start
 This will start the app locally with automatic refreshing of the web and server components when you make a change.
 
 Visit `http://localhost:5001` in your browser.
-
-## Running tests
-You need to have the database running in Docker when running the tests.
-
-```
-$ yarn test
-```
-
-
-Good luck!
-
-
