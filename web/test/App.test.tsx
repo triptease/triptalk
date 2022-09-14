@@ -1,13 +1,11 @@
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { App } from '../src/App';
-import { MessageClient } from '../src/MessageClient';
-
-Enzyme.configure({ adapter: new Adapter() });
+import { MessageClient } from 'MessageClient';
+import userEvent from '@testing-library/user-event';
+import App from '../src/App';
 
 describe('App', () => {
-  test(`Creates and retrieves messages`, async () => {
+  it(`Creates and retrieves messages`, async () => {
     const messages: Array<string> = [];
 
     const messageClient: MessageClient = {
@@ -16,7 +14,7 @@ describe('App', () => {
       },
       get: async () =>
         messages.map((message) => ({
-          id: 'someId',
+          id: `someId-${Math.floor(Math.random() * 100)}`,
           liked: false,
           message,
         })),
@@ -25,24 +23,21 @@ describe('App', () => {
       },
     };
 
-    const app = await shallow(<App messageClient={messageClient} />);
+    render(<App messageClient={messageClient} />);
 
-    app.find('.new-message').simulate('change', { target: { value: 'Hello Saturn!' } });
-    app.find('.create-new-message').simulate('click');
+    await userEvent.type(screen.getByRole('textbox'), 'Hello Saturn!');
+    await userEvent.click(screen.getByText('Create new message'));
 
-    app.find('.new-message').simulate('change', { target: { value: 'Hello Jupiter!' } });
-    app.find('.create-new-message').simulate('click');
+    await userEvent.type(screen.getByRole('textbox'), 'Hello Jupiter!');
+    await userEvent.click(screen.getByText('Create new message'));
 
-    await runAllPromises();
-    let allMessagesText = app.find('.message').map(node => node.text());
-    expect(allMessagesText).toHaveLength(2);
-    expect(allMessagesText).toEqual(expect.arrayContaining([
-      'Hello Saturn!',
-      'Hello Jupiter!'
-    ]));
+    await waitFor(() => {
+      expect(screen.queryByText('Hello Saturn!')).toBeInTheDocument();
+      expect(screen.queryByText('Hello Jupiter!')).toBeInTheDocument();
+    });
   });
 
-  test(`Like a message`, async () => {
+  it(`Like a message`, async () => {
     let message = {
       id: 'someId',
       message: 'someMessage',
@@ -59,22 +54,15 @@ describe('App', () => {
       },
     };
 
-    const app = await shallow(<App messageClient={messageClient} />);
+    render(<App messageClient={messageClient} />);
 
-    await runAllPromises();
-    expect(app.find('.liked').text()).toEqual('');
+    await waitFor(() => {
+      expect(screen.getByText('someMessage')).toBeInTheDocument();
+      expect(screen.queryByText('👍')).not.toBeInTheDocument();
+    });
 
-    app.find('.like-message').simulate('click');
+    await userEvent.click(screen.getByLabelText('like-message'));
 
-    await runAllPromises();
-    expect(app.find('.liked').text()).toEqual('👍');
+    await waitFor(() => expect(screen.getByText('👍')).toBeInTheDocument());
   });
 });
-
-const runAllPromises = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(undefined);
-    }, 0);
-  });
-};
