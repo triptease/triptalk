@@ -35,9 +35,12 @@ const App = ({ messageClient }: Props) => {
 
   return (
     <>
-      <input type="text" value={newMessage} onChange={onNewMessageChange} />
-      <button onClick={onCreateNewMessageClick}>Create new message</button>
-      <ol style={{ lineHeight: '3em' }}>
+      <div className="row">
+        <input type="text" value={newMessage} onChange={onNewMessageChange} />
+        <button onClick={onCreateNewMessageClick}>Create new message</button>
+      </div>
+
+      <ol style={{ lineHeight: '3em' }} role="list">
         {messages
           .sort((left, right) => (left.id > right.id ? 1 : -1))
           .map((message) => (
