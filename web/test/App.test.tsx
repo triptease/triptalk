@@ -3,6 +3,7 @@ import React from 'react';
 import { MessageClient } from 'MessageClient';
 import userEvent from '@testing-library/user-event';
 import App from '../src/App';
+import { Visibility } from 'server/src/Message';
 
 describe('App', () => {
   it(`Creates and retrieves messages`, async () => {
@@ -17,6 +18,7 @@ describe('App', () => {
           id: `someId-${Math.floor(Math.random() * 100)}`,
           liked: false,
           message,
+          visibility: Visibility.PUBLIC,
         })),
       like() {
         return Promise.resolve(undefined);
@@ -42,6 +44,7 @@ describe('App', () => {
       id: 'someId',
       message: 'someMessage',
       liked: false,
+      visibility: Visibility.PUBLIC,
     };
     const messageClient: MessageClient = {
       create: async () => {},

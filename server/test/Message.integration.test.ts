@@ -1,6 +1,6 @@
 import { App } from '../src/App';
 import fetch from 'node-fetch';
-import { Message } from '../src/Message';
+import { Message, Visibility } from '../src/Message';
 
 describe('Message', () => {
   test('Creates and retrieves all messages', async () => {
@@ -35,11 +35,13 @@ describe('Message', () => {
             id: expect.stringMatching(/^.+$/),
             message: message1,
             liked: false,
+            visibility: Visibility.PUBLIC,
           },
           {
             id: expect.stringMatching(/^.+$/),
             message: message2,
             liked: false,
+            visibility: Visibility.PUBLIC,
           },
         ]),
       );
@@ -85,11 +87,13 @@ describe('Message', () => {
             id: likedMessage.id,
             message: likedMessage.message,
             liked: true,
+            visibility: Visibility.PUBLIC,
           },
           {
             id: unlikedMessage.id,
             message: unlikedMessage.message,
             liked: false,
+            visibility: Visibility.PUBLIC,
           },
         ]),
       );

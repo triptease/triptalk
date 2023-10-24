@@ -1,6 +1,7 @@
 import { MessageClientHttp } from '../src/MessageClientHttp';
 import fastify from 'fastify';
 import { UUID } from '../src/MessageClient';
+import { Visibility } from 'server/src/Message';
 
 describe(`Use a remote message server`, () => {
   test(`Create a message`, async () => {
@@ -29,6 +30,7 @@ describe(`Use a remote message server`, () => {
     const storedMessage = {
       id: '195f4430-fe86-4628-afea-f7e870f0b2a1',
       message: 'a new message',
+      visibility: Visibility.PUBLIC,
     };
 
     const server = await fastify({

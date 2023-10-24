@@ -4,7 +4,7 @@ import { Server } from 'https';
 import { Client } from 'pg';
 import Postgrator from 'postgrator';
 import { v4 as uuid } from 'uuid';
-import { Message } from './Message';
+import {Message, Visibility} from './Message';
 
 export class App {
   private readonly fastify: FastifyInstance<Server>;
@@ -41,7 +41,7 @@ export class App {
 
     this.fastify.post('/messages', async (request, reply) => {
       message = request.body as string;
-      await this.client.query(`INSERT INTO messages (id, message, liked) VALUES ('${uuid()}', '${message}', FALSE);`);
+      await this.client.query(`INSERT INTO messages (id, message, liked, visibility) VALUES ('${uuid()}', '${message}', FALSE, '${Visibility.PUBLIC}');`);
       return reply.code(201).send();
     });
 
@@ -52,6 +52,7 @@ export class App {
         id: row.id,
         message: row.message,
         liked: row.liked,
+        visibility: row.visibility,
       }));
 
       return reply.code(200).send(messages);

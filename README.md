@@ -4,7 +4,11 @@ It's an app that allows you to submit messages and Like them.
 
 ## The Task
 
-We'd like you to extend this functionality to show a count of the number of times a message has been Liked.
+There are two possible tasks in this exercise. You can choose to do one or both, though we only expect you to tackle one.
+
+The first task is to add functionality to choose the visibility of the message when submitting it. The options are public and private. We then want you to add functionality to filter the feed by different visibility levels.
+
+The second task is to extend this application to show a count of the number of times a message has been Liked.
 
 ## How this session is structured
 
