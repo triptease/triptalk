@@ -31,7 +31,7 @@ There will be 15 minutes at end for questions.
 ## Required dependencies
 - `docker`
 - `docker-compose`
-- `node` v16.15 (or you can use `nvm` if your platform supports it)
+- `node` v20.9.0 (or you can use `nvm` if your platform supports it)
 - `yarn`
 
 ## Setting up the project
