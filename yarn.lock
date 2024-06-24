@@ -1961,6 +1961,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc-node/core@npm:^1.13.1":
+  version: 1.13.1
+  resolution: "@swc-node/core@npm:1.13.1"
+  peerDependencies:
+    "@swc/core": ">= 1.4.13"
+    "@swc/types": ">= 0.1"
+  checksum: 10c0/03223813c1b736ded4e3a6fe73e87d19e9578215e7f7b0c96308ac0e06c7de355334f210074256cfc8b52446461716df695aaf0f863ec621679cf4c48010a695
+  languageName: node
+  linkType: hard
+
+"@swc-node/register@npm:^1.9.2":
+  version: 1.9.2
+  resolution: "@swc-node/register@npm:1.9.2"
+  dependencies:
+    "@swc-node/core": "npm:^1.13.1"
+    "@swc-node/sourcemap-support": "npm:^0.5.0"
+    colorette: "npm:^2.0.20"
+    debug: "npm:^4.3.4"
+    pirates: "npm:^4.0.6"
+    tslib: "npm:^2.6.2"
+  peerDependencies:
+    "@swc/core": ">= 1.4.13"
+    typescript: ">= 4.3"
+  checksum: 10c0/9169461866b5081074e4ca96256776d0dc586e979ec0f589115daba6959628cdad7233ad7a66816c0fc412dad1c0b83a32fc271f8e46dd19a82f9e4843198a2f
+  languageName: node
+  linkType: hard
+
+"@swc-node/sourcemap-support@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@swc-node/sourcemap-support@npm:0.5.0"
+  dependencies:
+    source-map-support: "npm:^0.5.21"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/ce079d56d23aca8110fe5aa4826b394aa613b44fc442198a5403bf146d8963f38ed7cb4fa9594095c4c78fe06e5a0781dc51b5343d687658c4426e7fbfce749b
+  languageName: node
+  linkType: hard
+
 "@swc/core-android-arm-eabi@npm:1.3.0":
   version: 1.3.0
   resolution: "@swc/core-android-arm-eabi@npm:1.3.0"
@@ -2389,6 +2426,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@triptalk/server@workspace:server"
   dependencies:
+    "@swc-node/register": "npm:^1.9.2"
     "@swc/core": "npm:^1.6.5"
     "@swc/jest": "npm:^0.2.36"
     "@triptalk/shared": "npm:1.0.0"
@@ -2403,8 +2441,8 @@ __metadata:
     node-fetch: "npm:^2.6.1"
     nodemon: "npm:^2.0.7"
     pg: "npm:^8.6.0"
-    postgrator: "npm:^4.1.1"
-    ts-node: "npm:10.8.0"
+    postgrator: "npm:^4.3.1"
+    ts-node: "npm:^10.9.2"
     typescript: "npm:^4.2.4"
     uuid: "npm:^8.3.2"
   languageName: unknown
@@ -3605,6 +3643,13 @@ __metadata:
   version: 1.2.2
   resolution: "colorette@npm:1.2.2"
   checksum: 10c0/971b7dc0cfdb82df2266e54ce6c173bef0457be9ca8d6fc06a099efbe67dcddff17ccaae75020e4b8601cf48aea1f23afbf8a4be9fd501034da47bcdcbf42041
+  languageName: node
+  linkType: hard
+
+"colorette@npm:^2.0.20":
+  version: 2.0.20
+  resolution: "colorette@npm:2.0.20"
+  checksum: 10c0/e94116ff33b0ff56f3b83b9ace895e5bf87c2a7a47b3401b8c3f3226e050d5ef76cf4072fb3325f9dc24d1698f9b730baf4e05eeaf861d74a1883073f4c98a40
   languageName: node
   linkType: hard
 
@@ -7261,6 +7306,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pirates@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "pirates@npm:4.0.6"
+  checksum: 10c0/00d5fa51f8dded94d7429700fb91a0c1ead00ae2c7fd27089f0c5b63e6eca36197fe46384631872690a66f390c5e27198e99006ab77ae472692ab9c2ca903f36
+  languageName: node
+  linkType: hard
+
 "pkg-dir@npm:^4.2.0":
   version: 4.2.0
   resolution: "pkg-dir@npm:4.2.0"
@@ -7281,7 +7333,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postgrator@npm:^4.1.1":
+"postgrator@npm:^4.3.1":
   version: 4.3.1
   resolution: "postgrator@npm:4.3.1"
   dependencies:
@@ -8047,6 +8099,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"source-map-support@npm:^0.5.21":
+  version: 0.5.21
+  resolution: "source-map-support@npm:0.5.21"
+  dependencies:
+    buffer-from: "npm:^1.0.0"
+    source-map: "npm:^0.6.0"
+  checksum: 10c0/9ee09942f415e0f721d6daad3917ec1516af746a8120bba7bb56278707a37f1eb8642bde456e98454b8a885023af81a16e646869975f06afc1a711fb90484e7d
+  languageName: node
+  linkType: hard
+
 "source-map-support@npm:^0.5.6":
   version: 0.5.19
   resolution: "source-map-support@npm:0.5.19"
@@ -8463,9 +8525,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"ts-node@npm:10.8.0":
-  version: 10.8.0
-  resolution: "ts-node@npm:10.8.0"
+"ts-node@npm:^10.9.2":
+  version: 10.9.2
+  resolution: "ts-node@npm:10.9.2"
   dependencies:
     "@cspotcode/source-map-support": "npm:^0.8.0"
     "@tsconfig/node10": "npm:^1.0.7"
@@ -8497,7 +8559,14 @@ __metadata:
     ts-node-script: dist/bin-script.js
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
-  checksum: 10c0/eae7b541ecc99e07bd78fd977fe4be4f253d0a53fbb2ca234e7db8647b563ea71d5e2244418ff2730c184279bf1003c468b2489f3a75dca54e99cdfabafb46b3
+  checksum: 10c0/5f29938489f96982a25ba650b64218e83a3357d76f7bede80195c65ab44ad279c8357264639b7abdd5d7e75fc269a83daa0e9c62fd8637a3def67254ecc9ddc2
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.6.2":
+  version: 2.6.3
+  resolution: "tslib@npm:2.6.3"
+  checksum: 10c0/2598aef53d9dbe711af75522464b2104724d6467b26a60f2bdac8297d2b5f1f6b86a71f61717384aa8fd897240467aaa7bcc36a0700a0faf751293d1331db39a
   languageName: node
   linkType: hard
 

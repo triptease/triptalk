@@ -20,17 +20,6 @@ export class App {
 
     this.fastify.register(fastifyCors);
 
-    this.postgrator = new Postgrator({
-      migrationDirectory: `${__dirname}/../dbMigrations`,
-      driver: 'pg',
-      username: 'postgres',
-      password: 'postgres',
-      database: 'postgres',
-      port: 5003,
-      host: 'localhost',
-    });
-
-    let message: string = '';
     this.client = new Client({
       user: 'postgres',
       password: 'postgres',
@@ -39,9 +28,20 @@ export class App {
       host: 'localhost',
     });
 
+    this.postgrator = new Postgrator({
+      migrationPattern: `${__dirname}/../dbMigrations`,
+      driver: 'pg',
+      database: 'postgres',
+      execQuery: (query) => this.client.query(query),
+    });
+    let message: string = '';
     this.fastify.post('/messages', async (request, reply) => {
       message = request.body as string;
-      await this.client.query(`INSERT INTO messages (id, message, liked, visibility) VALUES ('${uuid()}', '${message}', FALSE, '${Visibility.PUBLIC}');`);
+      await this.client.query(
+        `INSERT INTO messages (id, message, liked, visibility) VALUES ('${uuid()}', '${message}', FALSE, '${
+          Visibility.PUBLIC
+        }');`,
+      );
       return reply.code(201).send();
     });
 
@@ -63,6 +63,7 @@ export class App {
       await this.client.query(`UPDATE messages SET liked = TRUE WHERE id = '${id}'`);
       return reply.code(204).send();
     });
+
   }
 
   async start() {
