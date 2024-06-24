@@ -2,6 +2,7 @@
   "name": "@triptalk/web",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "vite --port=5001",
     "compile": "tsc",
