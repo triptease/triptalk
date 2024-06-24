@@ -22,7 +22,7 @@ We'll be working as a pair so talk through your thinking and don't hesitate to a
 
 We'd like you to commit your changes to a local git repository. Treat your commit as though it will push and deploy the app to production.
 
-Feel free to look stuff up on the internet, it's not a memory test. There are no deliberate tricks or gotchas here, at least not intentionally.
+Feel free to look stuff up on the internet or use LLM assistants, it's not a memory test. There are no deliberate tricks or gotchas here, at least not intentionally.
 
 We'll take a break halfway for 5-10 mins.
 
