@@ -1,10 +1,10 @@
+import { Message, Visibility } from '@triptalk/shared';
 import fastify, { FastifyInstance } from 'fastify';
 import fastifyCors from 'fastify-cors';
 import { Server } from 'https';
 import { Client } from 'pg';
 import Postgrator from 'postgrator';
 import { v4 as uuid } from 'uuid';
-import {Message, Visibility} from './Message';
 
 export class App {
   private readonly fastify: FastifyInstance<Server>;

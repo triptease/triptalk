@@ -1,0 +1,13 @@
+{
+  "name": "@triptalk/shared",
+  "version": "1.0.0",
+  "private": true,
+
+  "scripts": {
+    "compile": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37"
+  }
+}

@@ -3,7 +3,7 @@ import React from 'react';
 import { MessageClient } from 'MessageClient';
 import userEvent from '@testing-library/user-event';
 import App from '../src/App';
-import { Visibility } from 'server/src/Message';
+import { Visibility } from '@triptalk/shared';
 
 describe('App', () => {
   it(`Creates and retrieves messages`, async () => {

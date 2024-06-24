@@ -1,5 +1,6 @@
+import { Message, UUID } from '@triptalk/shared';
 import fetch from 'isomorphic-fetch';
-import { Message, MessageClient, UUID } from './MessageClient';
+import { MessageClient } from './MessageClient';
 
 export class MessageClientHttp implements MessageClient {
   constructor(private readonly baseUrl: string) {}

@@ -1,5 +1,6 @@
+import { Message, UUID } from '@triptalk/shared';
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { Message, MessageClient, UUID } from './MessageClient';
+import { MessageClient } from './MessageClient';
 
 type Props = {
   messageClient: MessageClient;

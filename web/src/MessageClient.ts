@@ -1,9 +1,5 @@
-import { Message } from 'server/src/Message';
+import { Message, UUID } from '@triptalk/shared';
 
-export type UUID = string;
-
-
-export { Message };
 export interface MessageClient {
   get: () => Promise<Array<Message>>;
   create: (newMessage: string) => Promise<void>;

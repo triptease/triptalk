@@ -1,7 +1,6 @@
 import { MessageClientHttp } from '../src/MessageClientHttp';
 import fastify from 'fastify';
-import { UUID } from '../src/MessageClient';
-import { Visibility } from 'server/src/Message';
+import { UUID, Visibility } from '@triptalk/shared';
 
 describe(`Use a remote message server`, () => {
   test(`Create a message`, async () => {

@@ -1,6 +1,6 @@
 import { App } from '../src/App';
 import fetch from 'node-fetch';
-import { Message, Visibility } from '../src/Message';
+import { Message, Visibility } from '@triptalk/shared';
 
 describe('Message', () => {
   test('Creates and retrieves all messages', async () => {
