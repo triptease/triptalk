@@ -6,7 +6,7 @@ describe(`Use a remote message server`, () => {
   test(`Create a message`, async () => {
     let messageStore: string = 'no message';
 
-    const server = await fastify({
+    const server = fastify({
       logger: true,
     }).post('/messages', async (request, reply) => {
       messageStore = request.body as string;
@@ -32,7 +32,7 @@ describe(`Use a remote message server`, () => {
       visibility: Visibility.PUBLIC,
     };
 
-    const server = await fastify({
+    const server = fastify({
       logger: true,
     }).get('/messages', async (_, reply) => {
       return reply.send(storedMessage);
@@ -54,7 +54,7 @@ describe(`Use a remote message server`, () => {
     const messageId = '195f4430-fe86-4628-afea-f7e870f0b2a1';
     const calls: { messageId: UUID; body: object }[] = [];
 
-    const server = await fastify({
+    const server = fastify({
       logger: true,
     }).patch(`/messages/:messageId`, async (request, reply) => {
       // @ts-ignore
