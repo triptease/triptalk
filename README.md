@@ -29,13 +29,16 @@ We'll take a break halfway for 5-10 mins.
 There will be 15 minutes at end for questions.
 
 ## Required dependencies
+
 - `docker`
 - `docker-compose`
 - `node` v20.9.0 (or you can use `nvm` if your platform supports it)
 - `yarn`
 
 ## Setting up the project
+
 Download the project dependencies and start the database in docker.
+
 ```
 $ nvm install
 $ yarn
@@ -43,6 +46,7 @@ $ docker-compose up -d
 ```
 
 ## Running tests
+
 You need to have the database running in Docker when running the tests.
 
 ```
@@ -50,12 +54,14 @@ $ yarn test
 ```
 
 ## Starting the project
+
 In two separate terminals/tabs:
 
 ```
 $ cd server
 $ yarn start
 ```
+
 ```
 $ cd web
 $ yarn start
