@@ -41,8 +41,9 @@ Download the project dependencies and start the database in docker.
 
 ```
 $ nvm install
+$ corepack enable
 $ yarn
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 ## Running tests
