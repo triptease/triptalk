@@ -46,6 +46,26 @@ $ yarn
 $ docker compose up -d
 ```
 
+### Troubleshooting
+
+If you get either this error:
+
+```
+The engine "yarn" is incompatible with this module. Expected version "xxx". Got "yyy"
+```
+
+Or this one:
+
+```
+This project's package.json defines "packageManager": "xxx". However the current global version of Yarn is yyy.
+```
+
+This can happen if a prior global installation of Yarn Classic has overridden Corepack's package manager shims. 
+If `yarn -v` outputs a different value to the the "packageManager" field of package.json, this is probably the issue.
+
+You can work around this by running `corepack yarn` instead of `yarn` (or on Unix systems, `alias yarn='corepack yarn'` then continue as before).
+
+
 ## Running tests
 
 You need to have the database running in Docker when running the tests.
